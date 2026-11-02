@@ -1,0 +1,35 @@
+# Netlify build contract: static Vite build, no server functions.
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  # Keep in sync with .nvmrc.
+  NODE_VERSION = "24"
+
+# The app is a single page with no client-side router, so there is no SPA
+# catch-all redirect: unknown paths get Netlify's normal 404.
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # Everything (scripts, fonts, images) is self-hosted. 'unsafe-inline' for
+    # styles is needed by the toast library, which injects a <style> tag.
+    Content-Security-Policy = "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
+    X-Content-Type-Options = "nosniff"
+    X-Frame-Options = "DENY"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
+    Cross-Origin-Opener-Policy = "same-origin"
+
+# Vite fingerprints everything in /assets, so it can be cached forever.
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/site.webmanifest"
+  [headers.values]
+    Content-Type = "application/manifest+json; charset=utf-8"
