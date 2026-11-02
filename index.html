@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+    <!-- Values come from package.json via the site-metadata plugin in vite.config.ts. -->
+    <title>%SITE_TITLE%</title>
+    <meta name="description" content="%SITE_DESCRIPTION%" />
+    <link rel="canonical" href="%SITE_URL%" />
+    <meta name="application-name" content="%SITE_NAME%" />
+    <meta name="color-scheme" content="light dark" />
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="%SITE_THEME_LIGHT%" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="%SITE_THEME_DARK%" />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="%SITE_NAME%" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:title" content="%SITE_TITLE%" />
+    <meta property="og:description" content="%SITE_DESCRIPTION%" />
+    <meta property="og:url" content="%SITE_URL%" />
+    <meta property="og:image" content="%SITE_OG_IMAGE%" />
+    <meta property="og:image:secure_url" content="%SITE_OG_IMAGE%" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="%SITE_OG_IMAGE_WIDTH%" />
+    <meta property="og:image:height" content="%SITE_OG_IMAGE_HEIGHT%" />
+    <meta property="og:image:alt" content="%SITE_OG_IMAGE_ALT%" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="%SITE_TITLE%" />
+    <meta name="twitter:description" content="%SITE_DESCRIPTION%" />
+    <meta name="twitter:image" content="%SITE_OG_IMAGE%" />
+    <meta name="twitter:image:alt" content="%SITE_OG_IMAGE_ALT%" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
